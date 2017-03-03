@@ -1,5 +1,13 @@
-# README #
+Error 404
+===========
 
-Error 404 Sitecore!!!!!!!1
+This module is super hot!!!!
 
-### What is this repository for? ###
+Changelog
+=========
+
+Version 1.0
+* Initial Release
+
+
+
