@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Sitecore.Error404.UnitTests
+namespace UserAuditReport.Tests
 {
     [TestClass]
     public class UnitTest1
