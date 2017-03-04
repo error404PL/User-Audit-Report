@@ -2,41 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MongoDB.Bson;
 using Sitecore.Data;
+using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
 using Sitecore.Events;
+using Sitecore.Security.Accounts;
+using Sitecore.Security.Authentication;
 using Sitecore.SecurityModel;
+using UserAuditReport.DTO;
+using UserAuditReport.Repositories;
+using UserAuditReport.Services;
 
 namespace UserAuditReport.Events
 {
     public class ItemEventHandler
     {
-        public void OnItemSaved(object sender, EventArgs args)
+        private readonly IChangesReportService _changesReportService;
+
+        public ItemEventHandler()
         {
-            // Extract the item from the event Arguments
-            Item savedItem = Event.ExtractParameter(args, 0) as Item;
+            _changesReportService = new ChangesReportService();
+        }
 
-            //// Allow only non null items and allow only items from the master database
-            //if (savedItem != null && savedItem.Database.Name.ToLower() == "master")
-            //{
-            //    // Do some kind of template validation to limit only the items you actually want
+        public void OnItemSaving(object sender, EventArgs args)
+        {
+            Item item = Event.ExtractParameter(args, 0) as Item;
 
-            //    if (savedItem.TemplateID == ID.Parse("{00000000-0000-0000-0000-000000000000}"))
-            //    {
-            //        // Get the data that you need to populate here
-
-            //        // Start Editing the Item
-
-            //        using (new SecurityDisabler())
-            //        {
-            //            savedItem.Editing.BeginEdit();
-
-            //            // Do your edits here
-
-            //            savedItem.Editing.EndEdit();
-            //        }
-            //    }
-            //}
+                if (item != null && item.Database.Name.ToLower().Equals("master") 
+                    && item.Paths.IsContentItem)
+                {
+                    Item originalItem = item.Database.GetItem(item.ID, item.Language, item.Version);
+                    
+                   _changesReportService.AddOrUpdateChangesForUser(originalItem, item);
+                }           
         }
     }
 }
