@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using UserAuditReport.DTO;
+using UserAuditReport.Models;
 
 namespace UserAuditReport.Repositories
 {
     public interface IUserAuditReportRepository
     {
-        bool Add(UserChangeDto changesInfo);
+        bool Add(UserChange changesInfo);
         
-        bool Update(UserChangeDto changesInfo);
+        bool Update(UserChange changesInfo);
 
-        List<UserChangeDto> GetAll();
+        List<UserChange> GetAll();
 
-        UserChangeDto GetByUserName(string userName);
+        UserChange GetByUserName(string userName);
     }
 }

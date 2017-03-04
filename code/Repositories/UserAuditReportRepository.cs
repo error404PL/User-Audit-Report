@@ -8,7 +8,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 using Sitecore.Diagnostics;
-using UserAuditReport.DTO;
+using UserAuditReport.Models;
 
 namespace UserAuditReport.Repositories
 {
@@ -28,26 +28,26 @@ namespace UserAuditReport.Repositories
             _userAuditCollection = GetCollection(connectionString, _collectionName);
         }
 
-        public bool Add(UserChangeDto changesInfo)
+        public bool Add(UserChange changesInfo)
         {
             return _userAuditCollection.Insert(changesInfo).Ok;
         }
 
-        public bool Update(UserChangeDto changesInfo)
+        public bool Update(UserChange changesInfo)
         {
-            var query = Query<UserChangeDto>.EQ(c => c.Id, changesInfo.Id);
-            var replacement = Update<UserChangeDto>.Replace(changesInfo);
+            var query = Query<UserChange>.EQ(c => c.Id, changesInfo.Id);
+            var replacement = Update<UserChange>.Replace(changesInfo);
             return _userAuditCollection.Update(query, replacement).Ok;
         }
 
-        public UserChangeDto GetByUserName(string userName)
+        public UserChange GetByUserName(string userName)
         {
-            return _userAuditCollection.AsQueryable<UserChangeDto>().FirstOrDefault(r => r.UserName.Equals(userName));
+            return _userAuditCollection.AsQueryable<UserChange>().FirstOrDefault(r => r.UserName.Equals(userName));
         }
 
-        public List<UserChangeDto> GetAll()
+        public List<UserChange> GetAll()
         {
-            return _userAuditCollection.AsQueryable<UserChangeDto>().ToList();
+            return _userAuditCollection.AsQueryable<UserChange>().ToList();
         }
 
         //public IEnumerable<Comment> GetAll()

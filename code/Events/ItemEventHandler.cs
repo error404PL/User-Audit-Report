@@ -11,7 +11,6 @@ using Sitecore.Events;
 using Sitecore.Security.Accounts;
 using Sitecore.Security.Authentication;
 using Sitecore.SecurityModel;
-using UserAuditReport.DTO;
 using UserAuditReport.Repositories;
 using UserAuditReport.Services;
 

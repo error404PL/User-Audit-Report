@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace UserAuditReport.DTO
+﻿namespace UserAuditReport.Models
 {
-    public class ChangedFieldDto
+    public class ChangedField
     {
-        public ChangedFieldDto(string fieldName, string oldValue, string newValue)
+        public ChangedField(string fieldName, string oldValue, string newValue)
         {
             FieldName = fieldName;
             OldValue = oldValue;

@@ -1,28 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using UserAuditReport.Enums;
 
-namespace UserAuditReport.DTO
+namespace UserAuditReport.Models
 {
-    public class ChangeDto
+    public class Change
     {
-        public ChangeDto(IEnumerable<ChangedFieldDto> changedFields, OperationType operationType)
+        public Change(IEnumerable<ChangedField> changedFields, OperationType operationType)
         {
             ChangedFields = changedFields;
             OperationType = operationType;
             Date = DateTime.UtcNow;
         }
 
-        public ChangeDto(OperationType operationType)
+        public Change(OperationType operationType)
         {
-            ChangedFields = new List<ChangedFieldDto>();
+            ChangedFields = new List<ChangedField>();
             OperationType = operationType;
             Date = DateTime.UtcNow;
         }
         public DateTime Date { get; set; }
         public OperationType OperationType { get; set; }
-        public IEnumerable<ChangedFieldDto> ChangedFields { get; set; }
+        public IEnumerable<ChangedField> ChangedFields { get; set; }
     }
 }

@@ -4,8 +4,8 @@ using System.Linq;
 using MongoDB.Bson;
 using Sitecore.Data.Items;
 using Sitecore.Security.Accounts;
-using UserAuditReport.DTO;
 using UserAuditReport.Enums;
+using UserAuditReport.Models;
 using UserAuditReport.Repositories;
 using UserAuditReport.ViewModels;
 
@@ -36,25 +36,25 @@ namespace UserAuditReport.Services
 
         public void AddOrUpdateRemovals(Item item)
         {
-            AddOrUpdate(item, OperationType.Deleting, new List<ChangedFieldDto>());
+            AddOrUpdate(item, OperationType.Deleting, new List<ChangedField>());
         }
 
         public void AddOrUpdateCopies(Item item)
         {
-            AddOrUpdate(item, OperationType.Coping, new List<ChangedFieldDto>());
+            AddOrUpdate(item, OperationType.Coping, new List<ChangedField>());
         }
 
         public void AddOrUpdateMoves(Item item)
         {
-            AddOrUpdate(item, OperationType.Moving, new List<ChangedFieldDto>());
+            AddOrUpdate(item, OperationType.Moving, new List<ChangedField>());
         }
 
         public void AddOrUpdateClones(Item item)
         {
-            AddOrUpdate(item, OperationType.Cloning, new List<ChangedFieldDto>());
+            AddOrUpdate(item, OperationType.Cloning, new List<ChangedField>());
         }
 
-        public List<UserChangeDto> GetAll()
+        public List<UserChange> GetAll()
         {
             return _userAuditReportReposiotry.GetAll();
         }
@@ -67,7 +67,7 @@ namespace UserAuditReport.Services
 
             foreach (var user in _userAuditReportReposiotry.GetAll())
             {
-                var allChanges = new List<ChangeDto>();
+                var allChanges = new List<Change>();
                 foreach (var changes in user.ChangedItems.Select(x => x.Changes))
                 {
                     allChanges.AddRange(changes);
@@ -97,7 +97,7 @@ namespace UserAuditReport.Services
             DateTime from = DateTime.MinValue;
             DateTime to = DateTime.MaxValue;
             var user = _userAuditReportReposiotry.GetByUserName(username);
-            var allChanges = new List<ChangeDto>();
+            var allChanges = new List<Change>();
             foreach (var changes in user.ChangedItems.Select(x => x.Changes))
             {
                 allChanges.AddRange(changes);
@@ -163,7 +163,7 @@ namespace UserAuditReport.Services
             return userViewModel;
         }
 
-        private ItemChangesViewModel PrepareChangesDetails(ChangeDto change, ChangedItemDto item, bool areSavingChanges = false)
+        private ItemChangesViewModel PrepareChangesDetails(Change change, ChangedItem item, bool areSavingChanges = false)
         {
             if (change == null)
             {
@@ -188,7 +188,7 @@ namespace UserAuditReport.Services
             };
         }
 
-        //private List<ItemSavedViewModel> PrepareSavingChanges(ICollection<ChangeDto> changes, ChangedItemDto item)
+        //private List<ItemSavedViewModel> PrepareSavingChanges(ICollection<Change> changes, ChangedItem item)
         //{
         //    return changes.Select(y => new ItemSavedViewModel()
         //    {
@@ -198,11 +198,11 @@ namespace UserAuditReport.Services
         //    }).ToList();
         //}
 
-        private ICollection<ChangedFieldDto> GetChangedFields(Item oldItem, Item newItem)
+        private ICollection<ChangedField> GetChangedFields(Item oldItem, Item newItem)
         {
             newItem.Fields.ReadAll();
             oldItem.Fields.ReadAll();
-            var changedFields = new List<ChangedFieldDto>();
+            var changedFields = new List<ChangedField>();
             foreach (var fieldName in newItem.Fields.Select(f => f.Name).Where(x => !x.StartsWith("__")))
             {
                 if (newItem.Fields[fieldName].Value.Equals(oldItem.Fields[fieldName].Value))
@@ -210,13 +210,13 @@ namespace UserAuditReport.Services
                     continue;
                 }
 
-                changedFields.Add(new ChangedFieldDto(fieldName, oldItem.Fields[fieldName].Value, newItem.Fields[fieldName].Value));
+                changedFields.Add(new ChangedField(fieldName, oldItem.Fields[fieldName].Value, newItem.Fields[fieldName].Value));
             }
 
             return changedFields;
         }
 
-        private void AddOrUpdate(Item item, OperationType operation, IEnumerable<ChangedFieldDto> changedFields)
+        private void AddOrUpdate(Item item, OperationType operation, IEnumerable<ChangedField> changedFields)
         {
             var userName = item.Statistics.UpdatedBy;
             if (string.IsNullOrEmpty(userName))
@@ -232,19 +232,19 @@ namespace UserAuditReport.Services
             var user = _userAuditReportReposiotry.GetByUserName(userName);
             if (user == null)
             {
-                var changes = new List<ChangeDto>
+                var changes = new List<Change>
                 {
-                    new ChangeDto(changedFields, operation)
+                    new Change(changedFields, operation)
                 };
 
-                var changedItems = new List<ChangedItemDto>
+                var changedItems = new List<ChangedItem>
                 {
-                    new ChangedItemDto(item.ID.ToString() , item.Paths.FullPath, item.Language.Name, changes)
+                    new ChangedItem(item.ID.ToString() , item.Paths.FullPath, item.Language.Name, changes)
                 };
 
                 var userRoles = RolesInRolesManager.GetRolesForUser(User.FromName(userName, false),
                     true).Select(r => r.Name);
-                user = new UserChangeDto(userName, userRoles, changedItems);
+                user = new UserChange(userName, userRoles, changedItems);
 
                 _userAuditReportReposiotry.Add(user);
             }
@@ -253,11 +253,11 @@ namespace UserAuditReport.Services
                 var changedItem = user.ChangedItems.FirstOrDefault(i => i.ItemId.Equals(item.ID.ToString()) && i.Language.Equals(item.Language.Name));
                 if (changedItem == null)
                 {
-                    changedItem = new ChangedItemDto(item.ID.ToString(), item.Paths.FullPath, item.Language.Name);
+                    changedItem = new ChangedItem(item.ID.ToString(), item.Paths.FullPath, item.Language.Name);
                     user.ChangedItems.Add(changedItem);
                 }
                 changedItem.ItemPath = item.Paths.FullPath;
-                var change = new ChangeDto(changedFields, operation);
+                var change = new Change(changedFields, operation);
 
                 changedItem.Changes.Add(change);
                 _userAuditReportReposiotry.Update(user);

@@ -221,11 +221,11 @@
     <Compile Include="CustomFields\RolesMultilist.cs" />
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="Common\Constants.cs" />
-    <Compile Include="DTO\ChangedFieldDto.cs" />
-    <Compile Include="DTO\ChangedItemDto.cs" />
-    <Compile Include="DTO\ChangeDto.cs" />
-    <Compile Include="DTO\ReportSettingsDTO.cs" />
-    <Compile Include="DTO\UserChangeDto.cs" />
+    <Compile Include="Models\ChangedField.cs" />
+    <Compile Include="Models\ChangedItem.cs" />
+    <Compile Include="Models\Change.cs" />
+    <Compile Include="Models\ReportSettings.cs" />
+    <Compile Include="Models\UserChange.cs" />
     <Compile Include="Enums\OperationType.cs" />
     <Compile Include="Repositories\IUserAuditReportRepository.cs" />
     <Compile Include="Repositories\UserAuditReportRepository.cs" />
@@ -251,7 +251,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <PropertyGroup>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Sitecore.Data.Items;
-using UserAuditReport.DTO;
+using UserAuditReport.Models;
 using UserAuditReport.ViewModels;
 
 namespace UserAuditReport.Services
@@ -20,7 +20,7 @@ namespace UserAuditReport.Services
 
         void AddOrUpdateClones(Item item);
 
-        List<UserChangeDto> GetAll();
+        List<UserChange> GetAll();
 
         IEnumerable<UserViewModel> GetUsersOverview();
 
