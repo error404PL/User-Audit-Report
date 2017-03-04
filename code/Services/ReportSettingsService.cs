@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using UserAuditReport.Models;
 
 namespace UserAuditReport.Services
@@ -15,12 +12,12 @@ namespace UserAuditReport.Services
             Sitecore.Data.Fields.MultilistField trackedRoles = settingsItem.Fields["Tracked Roles"];
             var trackedRolesList = trackedRoles.Items.ToList();
 
-            var reportSetttingDTO = new ReportSettings()
+            var reportSettting = new ReportSettings()
             {
                    TrackedRoles = trackedRolesList
             };
 
-            return reportSetttingDTO;
+            return reportSettting;
         }
     }
 }

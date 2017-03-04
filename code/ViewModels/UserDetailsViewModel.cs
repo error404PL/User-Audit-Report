@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace UserAuditReport.ViewModels
 {
@@ -15,6 +12,7 @@ namespace UserAuditReport.ViewModels
             ItemsMoved = new List<ItemChangesViewModel>();
             ItemsCloned = new List<ItemChangesViewModel>();
         }
+
         public string UserName { get; set; }
         public List<ItemChangesViewModel> ItemsSaved { get; set; }
         public List<ItemChangesViewModel> ItemsDeleted { get; set; }

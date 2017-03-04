@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
@@ -50,10 +47,13 @@ namespace UserAuditReport.Repositories
             return _userAuditCollection.AsQueryable<UserChange>().ToList();
         }
 
-        private static MongoCollection GetCollection(string connectionString, string collectionName)
+        #region private methods
+        private MongoCollection GetCollection(string connectionString, string collectionName)
         {
             var url = new MongoUrl(connectionString);
             return new MongoClient(url).GetServer().GetDatabase(url.DatabaseName).GetCollection(collectionName);
         }
+
+        #endregion private methods
     }
 }

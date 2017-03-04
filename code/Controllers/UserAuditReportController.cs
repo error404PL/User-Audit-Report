@@ -1,70 +1,37 @@
 ﻿using Sitecore.Mvc.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 using UserAuditReport.Services;
 
 namespace UserAuditReport.Controllers
 {
     public class UserAuditReportController : SitecoreController
     {
-        private readonly IChangesReportService _userChangeService;
-
-        private readonly IUserService _userService;
-
-        private readonly IReportSettingsService _settingService;
+        private readonly IChangesReportService _userChangesReportService;
 
         public UserAuditReportController()
         {
-            _userChangeService = new ChangesReportService();
-            _userService = new UserService();
-            _settingService = new ReportSettingsService();
+            _userChangesReportService = new ChangesReportService();
         }
 
         [HttpGet]
-        public ActionResult GetUsers()
+        public ActionResult GetUserOverview(string username, int dateRange)
         {
-            var list = _userChangeService.GetAll();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
-        public ActionResult GetUserOverview(string username)
-        {
-            var user = _userChangeService.GetUserOverview(username);
+            var user = _userChangesReportService.GetUserOverview(username, dateRange);
             return Json(user, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        public ActionResult GetUserDetails(string username)
+        public ActionResult GetUserDetails(string username, int dateRange)
         {
-            var user = _userChangeService.GetUserDetails(username);
+            var user = _userChangesReportService.GetUserDetails(username, dateRange);
             return Json(user, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        public ActionResult GetUsersOverview()
+        public ActionResult GetUsersOverview(int dateRange)
         {
-            var users = _userChangeService.GetUsersOverview();
+            var users = _userChangesReportService.GetUsersOverview(dateRange);
             return Json(users, JsonRequestBehavior.AllowGet);
-        }
-
-        //Robert: Change on post if it's needed.
-        [HttpGet]
-        public JsonResult GetReportSettings()
-        {
-            var reportSettingsDTOResult = _settingService.GetReportSettings();
-            return Json(reportSettingsDTOResult, JsonRequestBehavior.AllowGet);
-        }
-        
-        [HttpGet]
-        public JsonResult IsUserInRole(string username)
-        {
-            var isUserTracked = _userService.IsUserInRole(username);
-            return Json(isUserTracked, JsonRequestBehavior.AllowGet);
         }
     }
 }

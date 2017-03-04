@@ -19,10 +19,10 @@ namespace UserAuditReport.Services
 
         List<UserChange> GetAll();
 
-        IEnumerable<UserViewModel> GetUsersOverview();
+        IEnumerable<UserViewModel> GetUsersOverview(int dateRange);
 
-        UserViewModel GetUserOverview(string username);
+        UserViewModel GetUserOverview(string username, int dateRange);
 
-        UserDetailsViewModel GetUserDetails(string username);
+        UserDetailsViewModel GetUserDetails(string username, int dateRange);
     }
 }
