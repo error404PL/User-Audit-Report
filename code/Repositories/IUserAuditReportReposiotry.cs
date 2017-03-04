@@ -10,7 +10,6 @@ namespace UserAuditReport.Repositories
     {
         bool Add(UserChangeDto changesInfo);
         UserChangeDto GetByUserName(string userName);
-
-        //bool Update();
+        bool Update(UserChangeDto changesInfo);
     }
 }

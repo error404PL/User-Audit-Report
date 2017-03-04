@@ -56,7 +56,7 @@ namespace UserAuditReport.Services
                     UserName = newItem.Statistics.UpdatedBy,
                     ChangedItems = changedItems
                 };
-
+                _userAuditReportReposiotry.Add(user);
             }
             else
             {
@@ -80,8 +80,8 @@ namespace UserAuditReport.Services
                     
 
                 changedItem.Changes.Add(change);
+                _userAuditReportReposiotry.Update(user);
             }
-            _userAuditReportReposiotry.Add(user);
         }
 
         private ICollection<ChangedFieldDto> GetChangedFields(Item oldItem, Item newItem)
