@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 using Sitecore.Diagnostics;
 using UserAuditReport.DTO;
@@ -22,14 +23,21 @@ namespace UserAuditReport.Repositories
             _userAuditCollection = GetCollection(connectionString, _collectionName);
         }
         //https://laubplusco.net/working-custom-mongodb-collections-sitecore-8-using-webapi/
-        public bool Add(UserChangeDto fieldSavingInfo)
+        public bool Add(UserChangeDto changesInfo)
         {
-            return _userAuditCollection.Insert(fieldSavingInfo).Ok;
+            return _userAuditCollection.Insert(changesInfo).Ok;
         }
 
         public UserChangeDto GetByUserName(string userName)
         {
             return _userAuditCollection.AsQueryable<UserChangeDto>().FirstOrDefault(r => r.UserName.Equals(userName));
+        }
+
+        public bool Update(UserChangeDto changesInfo)
+        {
+            var query = Query<UserChangeDto>.EQ(c => c.Id, changesInfo.Id);
+            var replacement = Update<UserChangeDto>.Replace(changesInfo);
+            return _userAuditCollection.Update(query, replacement).Ok;
         }
 
         //public IEnumerable<Comment> GetAll()
