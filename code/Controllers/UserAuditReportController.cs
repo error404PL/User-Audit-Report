@@ -27,9 +27,9 @@ namespace UserAuditReport.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetUsersOverview(string username)
+        public ActionResult GetUsersOverview(string username, int dateRange)
         {
-            var users = _userChangesReportService.GetUsersOverview(-1, username);
+            var users = _userChangesReportService.GetUsersOverview(dateRange, username);
             return Json(users, JsonRequestBehavior.AllowGet);
         }
     }

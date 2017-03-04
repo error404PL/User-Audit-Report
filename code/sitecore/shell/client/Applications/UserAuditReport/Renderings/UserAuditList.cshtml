@@ -15,7 +15,7 @@
 <div @htmlAttributes>
 
     <div style='margin-bottom: 10px;' class='pull-right'>
-        User filter: <input type="text" id="user-filter" />
+        Username filter: <input type="text" id="user-audit-filter" />
     </div>
 
     <!-- data binding with knockout js https://cmsview.wordpress.com/2015/11/05/sitecore-speak-for-beginners-part-9-getting-data-for-custom-component/-->
@@ -58,32 +58,6 @@
                         <td class="ventilate">
                             <span data-bind="text:ItemsDeleted"></span>
                         </td>
-
-                        @*
-        <td colspan=7>
-            <ul data-bind="foreach: ChangedItems" style="list-style-type: none;">
-                <li>
-                    Item: <span data-bind="text:ItemPath"></span>
-
-                    <ul data-bind="foreach: Changes" style="list-style-type: none;">
-                        <li>
-                            Date: <span data-bind="text:Date"></span>
-
-                            <ul data-bind="foreach: ChangedFields" style="list-style-type: none;">
-                                <li>
-                                    <div>Field: <span data-bind="text:FieldName"></span></div>
-                                    <div>Old value: <span data-bind="text:OldValue"></span></div>
-                                    <div>New value: <span data-bind="text:NewValue"></span></div>
-                                </li>
-                            </ul>
-
-                        </li>
-                    </ul>
-
-                </li>
-            </ul>
-        </td>
-                        *@
                     </tr>
                 </tbody>
             </table>
