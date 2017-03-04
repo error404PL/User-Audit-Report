@@ -23,6 +23,7 @@ namespace UserAuditReport.Repositories
         public UserAuditReportRepository()
         {
             var connectionStringName = Sitecore.Configuration.Settings.GetSetting(_connectionStringSetting);
+            Assert.IsNotNullOrEmpty(connectionStringName, "UserAuditReport.ConnectionStringName setting required");
             var connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
             _userAuditCollection = GetCollection(connectionString, _collectionName);
         }
