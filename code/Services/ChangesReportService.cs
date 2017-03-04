@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using MongoDB.Bson;
 using Sitecore.Data.Items;
 using Sitecore.Security.Accounts;
 using UserAuditReport.Enums;
@@ -176,7 +176,7 @@ namespace UserAuditReport.Services
                 {
                     Id = item.ItemId,
                     Path = item.ItemPath,
-                    Date = change.Date.ToString(),
+                    Date = change.Date.ToString(CultureInfo.InvariantCulture),
                     FieldsChanged = change.ChangedFields               
                 };
             }
@@ -184,19 +184,9 @@ namespace UserAuditReport.Services
             {
                 Id = item.ItemId,
                 Path = item.ItemPath,
-                Date = change.Date.ToString()
+                Date = change.Date.ToString(CultureInfo.InvariantCulture)
             };
         }
-
-        //private List<ItemSavedViewModel> PrepareSavingChanges(ICollection<Change> changes, ChangedItem item)
-        //{
-        //    return changes.Select(y => new ItemSavedViewModel()
-        //    {
-        //        Id = item.ItemId,
-        //        Path = item.ItemPath,
-
-        //    }).ToList();
-        //}
 
         private ICollection<ChangedField> GetChangedFields(Item oldItem, Item newItem)
         {

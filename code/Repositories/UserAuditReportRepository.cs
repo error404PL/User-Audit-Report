@@ -50,26 +50,6 @@ namespace UserAuditReport.Repositories
             return _userAuditCollection.AsQueryable<UserChange>().ToList();
         }
 
-        //public IEnumerable<Comment> GetAll()
-        //{
-        //    return _userAuditCollection.FindAllAs<Comment>();
-        //}
-        //public Comment Get(ObjectId id)
-        //{
-        //    return _userAuditCollection.FindOneAs<Comment>(GetIDQuery(id));
-        //}
-        //public bool Set(Comment comment)
-        //{
-        //}
-        //public IEnumerable<Comment> GetByDateRange(DateTime startDate, int numberOfDays)
-        //{
-        //    return _userAuditCollection.AsQueryable<Comment>().Where(c => c.Date >= startDate && c.Date < startDate.AddDays(numberOfDays)).ToArray();
-        //}
-        //protected IMongoQuery GetIDQuery(ObjectId id)
-        //{
-        //    return Query<Comment>.EQ(c => c.Id, id);
-        //}
-
         private static MongoCollection GetCollection(string connectionString, string collectionName)
         {
             var url = new MongoUrl(connectionString);
