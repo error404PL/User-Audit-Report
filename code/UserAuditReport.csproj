@@ -206,11 +206,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\Feature.UserAuditReport.config" />
+    <Content Include="App_Config\Include\Feature\Sitecore.UserAuditReport.Serialization.config" />
     <None Include="Global.asax" />
     <Content Include="Views\UserAuditReportFeature\UserAuditReportView.cshtml" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomFields\RolesMultilist.cs" />
     <Compile Include="DTO\BaseItemDto.cs" />
     <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
     <Compile Include="Common\Constants.cs" />
@@ -252,7 +254,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58113</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
