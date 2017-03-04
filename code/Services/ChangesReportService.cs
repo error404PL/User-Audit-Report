@@ -59,77 +59,35 @@ namespace UserAuditReport.Services
             return _userAuditReportReposiotry.GetAll();
         }
 
-        public IEnumerable<UserViewModel> GetUsersOverview(string userFilter)
+        public IEnumerable<UserViewModel> GetUsersOverview(int dateRange, string userFilter)
         {
-            DateTime from = DateTime.MinValue;
-            DateTime to = DateTime.MaxValue;
-            var usersViewModel = new List<UserViewModel>();
+            DateTime from = dateRange > 0
+                ? DateTime.UtcNow.AddDays(-dateRange) : DateTime.MinValue;
 
-            foreach (var user in _userAuditReportReposiotry.GetAll().Where(u => u.UserName.Contains(userFilter)))
-            {
-                var allChanges = new List<Change>();
-                foreach (var changes in user.ChangedItems.Select(x => x.Changes))
-                {
-                    allChanges.AddRange(changes);
-                }
-
-                var filtredChanges = allChanges.Where(y => y.Date >= from && y.Date <= to);
-                var userViewModel = new UserViewModel()
-                {
-                    UserName = user.UserName,
-                    AllChanges = filtredChanges.Count(),
-                    AllFieldsChanged = allChanges.Select(x => x.ChangedFields.Count()).Sum(),
-                    ItemsCloned = allChanges.Count(y => y.OperationType == OperationType.Cloning),
-                    ItemsCopied = allChanges.Count(y => y.OperationType == OperationType.Coping),
-                    ItemsDeleted = allChanges.Count(y => y.OperationType == OperationType.Deleting),
-                    ItemsMoved = allChanges.Count(y => y.OperationType == OperationType.Moving),
-                    ItemsSaved = allChanges.Count(y => y.OperationType == OperationType.Saving)
-                };
-
-                usersViewModel.Add(userViewModel);
-            }
-
-            return usersViewModel;
+            return _userAuditReportReposiotry.GetAll().Where(u => u.UserName.Contains(userFilter)).Select(x => PrepareUserViewModel(x, from));
         }
 
-        public UserViewModel GetUserOverview(string username)
+        public UserViewModel GetUserOverview(string username, int dateRange)
         {
-            DateTime from = DateTime.MinValue;
-            DateTime to = DateTime.MaxValue;
-            var user = _userAuditReportReposiotry.GetByUserName(username);
-            var allChanges = new List<Change>();
-            foreach (var changes in user.ChangedItems.Select(x => x.Changes))
-            {
-                allChanges.AddRange(changes);
-            }
+            DateTime from = dateRange > 0
+                ? DateTime.UtcNow.AddDays(-dateRange) : DateTime.MinValue;
 
-            var filtredChanges = allChanges.Where(y => y.Date >= from && y.Date <= to);
-            var userViewModel = new UserViewModel()
-            {
-                UserName = user.UserName,
-                AllChanges = filtredChanges.Count(),
-                AllFieldsChanged = allChanges.Select(x => x.ChangedFields.Count()).Sum(),
-                ItemsCloned = allChanges.Count(y => y.OperationType == OperationType.Cloning),
-                ItemsCopied = allChanges.Count(y => y.OperationType == OperationType.Coping),
-                ItemsDeleted = allChanges.Count(y => y.OperationType == OperationType.Deleting),
-                ItemsMoved = allChanges.Count(y => y.OperationType == OperationType.Moving),
-                ItemsSaved = allChanges.Count(y => y.OperationType == OperationType.Saving)
-            };
-
-            return userViewModel;
+            var user = _userAuditReportReposiotry.GetByUserName(username);           
+            return PrepareUserViewModel(user, from);
         }
 
-        public UserDetailsViewModel GetUserDetails(string username)
+        public UserDetailsViewModel GetUserDetails(string username, int dateRange)
         {
-            DateTime from = DateTime.MinValue;
-            DateTime to = DateTime.MaxValue;
+            DateTime from = dateRange > 0
+                ? DateTime.UtcNow.AddDays(-dateRange) : DateTime.MinValue;
+
             var user = _userAuditReportReposiotry.GetByUserName(username);
             var userViewModel = new UserDetailsViewModel();
 
             foreach (var item in user.ChangedItems)
             {
-                var changes = item.Changes.Where(x => x.Date >= from && x.Date <= to).ToList();
-                var itemViewModel = PrepareChangesDetails(changes.FirstOrDefault(x => x.OperationType == OperationType.Cloning),item);
+                var changes = item.Changes.Where(x => x.Date >= from).ToList();
+                var itemViewModel = PrepareChangesDetails(changes.FirstOrDefault(x => x.OperationType == OperationType.Cloning), item);
                 if (itemViewModel != null)
                 {
                     userViewModel.ItemsCloned.Add(itemViewModel);
@@ -163,6 +121,31 @@ namespace UserAuditReport.Services
             return userViewModel;
         }
 
+        #region private methods
+        private UserViewModel PrepareUserViewModel(UserChange user, DateTime from)
+        {
+            var allChanges = new List<Change>();
+            foreach (var changes in user.ChangedItems.Select(x => x.Changes))
+            {
+                allChanges.AddRange(changes);
+            }
+
+            var filtredChanges = allChanges.Where(y => y.Date >= from);
+            var userViewModel = new UserViewModel()
+            {
+                UserName = user.UserName,
+                AllChanges = filtredChanges.Count(),
+                AllFieldsChanged = allChanges.Select(x => x.ChangedFields.Count()).Sum(),
+                ItemsCloned = allChanges.Count(y => y.OperationType == OperationType.Cloning),
+                ItemsCopied = allChanges.Count(y => y.OperationType == OperationType.Coping),
+                ItemsDeleted = allChanges.Count(y => y.OperationType == OperationType.Deleting),
+                ItemsMoved = allChanges.Count(y => y.OperationType == OperationType.Moving),
+                ItemsSaved = allChanges.Count(y => y.OperationType == OperationType.Saving)
+            };
+
+            return userViewModel;
+        }
+
         private ItemChangesViewModel PrepareChangesDetails(Change change, ChangedItem item, bool areSavingChanges = false)
         {
             if (change == null)
@@ -177,7 +160,7 @@ namespace UserAuditReport.Services
                     Id = item.ItemId,
                     Path = item.ItemPath,
                     Date = change.Date.ToString(CultureInfo.InvariantCulture),
-                    FieldsChanged = change.ChangedFields               
+                    FieldsChanged = change.ChangedFields
                 };
             }
             return new ItemChangesViewModel()
@@ -253,5 +236,7 @@ namespace UserAuditReport.Services
                 _userAuditReportReposiotry.Update(user);
             }
         }
+
+    #endregion private method
     }
 }

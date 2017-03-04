@@ -19,6 +19,7 @@ namespace UserAuditReport.Models
             OperationType = operationType;
             Date = DateTime.UtcNow;
         }
+
         public DateTime Date { get; set; }
         public OperationType OperationType { get; set; }
         public IEnumerable<ChangedField> ChangedFields { get; set; }
