@@ -207,8 +207,14 @@
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\Feature.UserAuditReport.config" />
     <Content Include="App_Config\Include\Feature\Sitecore.UserAuditReport.Serialization.config" />
+    <Content Include="App_Config\Include\Feature\z.Sitecore.UserAuditReport.DevSettings.config.example">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Global.asax" />
+    <Content Include="sitecore\shell\client\Applications\UserAuditReport\Renderings\UserAuditList.js" />
+    <Content Include="sitecore\shell\client\Applications\UserAuditReport\Renderings\UserAuditList.test.js" />
     <Content Include="Views\UserAuditReportFeature\UserAuditReportView.cshtml" />
+    <Content Include="sitecore\shell\client\Applications\UserAuditReport\Renderings\UserAuditList.cshtml" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

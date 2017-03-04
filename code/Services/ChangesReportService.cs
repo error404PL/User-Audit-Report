@@ -20,6 +20,7 @@ namespace UserAuditReport.Services
             _userAuditReportReposiotry = new UserAuditReportRepository();
             _userService = new UserService();
         }
+
         public void AddOrUpdateSavings(Item oldItem, Item newItem)
         {
             var operation = OperationType.Saving;
@@ -50,6 +51,11 @@ namespace UserAuditReport.Services
         public void AddOrUpdateClones(Item item)
         {
             AddOrUpdate(item, OperationType.Cloning, new List<ChangedFieldDto>());
+        }
+
+        public List<UserChangeDto> GetAll()
+        {
+            return _userAuditReportReposiotry.GetAll();
         }
 
         private ICollection<ChangedFieldDto> GetChangedFields(Item oldItem, Item newItem)

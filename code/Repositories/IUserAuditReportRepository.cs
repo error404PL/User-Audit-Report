@@ -9,7 +9,11 @@ namespace UserAuditReport.Repositories
     public interface IUserAuditReportRepository
     {
         bool Add(UserChangeDto changesInfo);
-        UserChangeDto GetByUserName(string userName);
+        
         bool Update(UserChangeDto changesInfo);
+
+        List<UserChangeDto> GetAll();
+
+        UserChangeDto GetByUserName(string userName);
     }
 }

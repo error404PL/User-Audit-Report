@@ -33,16 +33,21 @@ namespace UserAuditReport.Repositories
             return _userAuditCollection.Insert(changesInfo).Ok;
         }
 
-        public UserChangeDto GetByUserName(string userName)
-        {
-            return _userAuditCollection.AsQueryable<UserChangeDto>().FirstOrDefault(r => r.UserName.Equals(userName));
-        }
-
         public bool Update(UserChangeDto changesInfo)
         {
             var query = Query<UserChangeDto>.EQ(c => c.Id, changesInfo.Id);
             var replacement = Update<UserChangeDto>.Replace(changesInfo);
             return _userAuditCollection.Update(query, replacement).Ok;
+        }
+
+        public UserChangeDto GetByUserName(string userName)
+        {
+            return _userAuditCollection.AsQueryable<UserChangeDto>().FirstOrDefault(r => r.UserName.Equals(userName));
+        }
+
+        public List<UserChangeDto> GetAll()
+        {
+            return _userAuditCollection.AsQueryable<UserChangeDto>().ToList();
         }
 
         //public IEnumerable<Comment> GetAll()

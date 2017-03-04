@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Sitecore.Data.Items;
+using UserAuditReport.DTO;
 
 namespace UserAuditReport.Services
 {
@@ -13,7 +14,11 @@ namespace UserAuditReport.Services
         void AddOrUpdateRemovals(Item item);
 
         void AddOrUpdateCopies(Item item);
+
         void AddOrUpdateMoves(Item item);
+
         void AddOrUpdateClones(Item item);
+
+        List<UserChangeDto> GetAll();
     }
 }
