@@ -12,6 +12,7 @@ artifacts/
 *.userprefs
 *DS_Store
 *.sln.ide
+*.csproj.sitecore
 lib/license.xml
 lib/Sitecore/*
 !lib/Sitecore/readme.MD
