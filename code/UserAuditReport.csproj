@@ -207,8 +207,8 @@
     <Compile Include="DTO\ChangedItemDto.cs" />
     <Compile Include="DTO\ChangeDto.cs" />
     <Compile Include="DTO\UserChangeDto.cs" />
-    <Compile Include="Repositories\IUserAuditReportReposiotry.cs" />
-    <Compile Include="Repositories\UserAuditReportReposiotry.cs" />
+    <Compile Include="Repositories\IUserAuditReportRepository.cs" />
+    <Compile Include="Repositories\UserAuditReportRepository.cs" />
     <Compile Include="Services\IChangesReportService.cs" />
     <Compile Include="Services\ChangesReportService.cs" />
     <None Include="Global.asax.cs">

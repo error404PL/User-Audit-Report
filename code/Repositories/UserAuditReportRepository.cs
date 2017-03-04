@@ -12,7 +12,7 @@ using UserAuditReport.DTO;
 
 namespace UserAuditReport.Repositories
 {
-    public class UserAuditReportReposiotry : IUserAuditReportReposiotry
+    public class UserAuditReportRepository : IUserAuditReportRepository
     {
         private readonly string _collectionName = "useraudit";
 
@@ -20,7 +20,7 @@ namespace UserAuditReport.Repositories
 
         private readonly MongoCollection _userAuditCollection;
 
-        public UserAuditReportReposiotry()
+        public UserAuditReportRepository()
         {
             var connectionStringName = Sitecore.Configuration.Settings.GetSetting(_connectionStringSetting);
             var connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;

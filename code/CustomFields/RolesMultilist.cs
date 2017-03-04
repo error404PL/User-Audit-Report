@@ -12,17 +12,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using Sitecore.Globalization;
-using Sitecore.Resources;
-using Sitecore.Text;
-using Sitecore.Web.UI.HtmlControls.Data;
-using Sitecore.Web.UI.Sheer;
-using System;
-using System.Collections;
-using System.Web;
-using System.Web.UI;
 
 namespace UserAuditReport.CustomFields
 {
