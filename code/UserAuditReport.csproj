@@ -214,6 +214,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </None>
     <Compile Include="Controllers\UserAuditReportController.cs" />
+    <Compile Include="CustomFields\RolesMultilist.cs" />
     <Compile Include="Events\ItemEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
