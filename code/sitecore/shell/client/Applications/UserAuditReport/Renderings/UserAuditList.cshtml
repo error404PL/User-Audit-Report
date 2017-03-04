@@ -4,13 +4,40 @@
 
 @model RenderingModel
 @{
-  var rendering = Html.Sitecore().Controls().GetUserControl(Model.Rendering);
-  rendering.Class = "sc-UserAuditList";
-  rendering.Requires.Script("client", "UserAuditList.js");
+    var rendering = Html.Sitecore().Controls().GetUserControl(Model.Rendering);
+    rendering.Class = "sc-listcontrol sc-UserAuditList";
+    rendering.Requires.Script("client", "UserAuditList.js");
 
-  var htmlAttributes = rendering.HtmlAttributes;
+    rendering.GetString("userlist", "userlist");
+
+    var htmlAttributes = rendering.HtmlAttributes;
 }      
 <div @htmlAttributes>
 
-    Hello World!
+    <div>
+        <table class="sc-table sc-table-header table">
+            <thead>
+                <tr>
+                    <th class="sc-table-head">User</th>
+                    <th class="sc-table-head">Changes</th>
+                </tr>
+            </thead>
+        </table>
+        <div class="sc-listcontrol-body">
+            <table class="sc-table table">
+                <tbody data-bind="foreach: userlist">
+                    <tr>
+                        <td class="ventilate">
+                            <span data-bind="text:UserName"></span>
+                        </td>
+                        <td class="ventilate">
+                            <span></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
 </div>

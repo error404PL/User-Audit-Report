@@ -4,6 +4,10 @@ Parent: "e9a53290-8618-43ec-9a4b-7da2af424800"
 Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
 Path: /sitecore/client/Your Apps/UserAuditReport
 DB: core
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Apps/32x32/Sign.png
 Languages:
 - Language: en
   Versions:

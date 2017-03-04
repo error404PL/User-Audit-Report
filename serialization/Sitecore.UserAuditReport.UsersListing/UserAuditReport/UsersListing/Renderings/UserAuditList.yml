@@ -8,6 +8,12 @@ SharedFields:
 - ID: "51b435bc-f7b9-478a-9c51-52916af96ff5"
   Hint: Path
   Value: /sitecore/shell/client/Applications/UserAuditReport/Renderings/UserAuditList.cshtml
+- ID: "7d24e54f-5c16-4314-90c9-6051aa1a7da1"
+  Hint: Parameters Template
+  Value: "{AB3D5FAC-B175-42EF-9BA2-D01815D8AD3C}"
+- ID: "ef7c5528-7307-4e19-863b-da19eed6a9ed"
+  Hint: Open Properties after Add
+  Value: "-"
 Languages:
 - Language: en
   Versions:

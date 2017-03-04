@@ -35,7 +35,7 @@ SharedFields:
           uid="{532C7DCD-29E7-4C34-9910-FC283D61A026}" />
         <r
           id="{7A69C522-7E99-4630-A25A-5D571505862A}"
-          par="ImageUrl=%25252525252fsitecore%25252525252fshell%25252525252fclient%25252525252fSpeak%25252525252fAssets%25252525252fimg%25252525252fspeak-logo.png&amp;Id=GlobalLogo"
+          par="ImageUrl=%2525252525252fsitecore%2525252525252fshell%2525252525252fclient%2525252525252fSpeak%2525252525252fAssets%2525252525252fimg%2525252525252fspeak-logo.png&amp;Id=GlobalLogo"
           ph="GlobalHeader.StartButton"
           uid="{A340B9F2-9FD0-4767-9B0B-62D7C8B0E5C7}" />
         <r
@@ -73,6 +73,7 @@ SharedFields:
           uid="{8EC02FDB-51E9-4983-9AD3-FAD2210E5BAC}" />
         <r
           id="{F5294B4D-9BCC-45B3-91A9-A2FB88CED30D}"
+          par="Change=Change&amp;Item=Item&amp;Modification Date=Modification+Date&amp;User=User&amp;Date To=Date+To&amp;Date From=Date+From"
           ph="ApplicationContent.Main"
           uid="{E8A1E397-2EA8-4FE5-9DCB-05130C913AF5}" />
       </d>
