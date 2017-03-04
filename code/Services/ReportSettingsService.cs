@@ -10,7 +10,7 @@ namespace UserAuditReport.Services
     {
         public ReportSettingsDTO GetReportSettings()
         {
-            var settingsItem = Sitecore.Context.Database.GetItem(Common.Constants.ReportsSettings.ReportsSettingsItemId);
+            var settingsItem = Sitecore.Configuration.Factory.GetDatabase("master").GetItem(Common.Constants.ReportsSettings.ReportsSettingsItemId);
 
             Sitecore.Data.Fields.MultilistField trackedRoles = settingsItem.Fields["Tracked Roles"];
             var trackedRolesList = trackedRoles.Items.ToList();

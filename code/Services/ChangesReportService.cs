@@ -12,11 +12,13 @@ namespace UserAuditReport.Services
 {
     public class ChangesReportService : IChangesReportService
     {
+        private readonly IUserService _userService;
         private readonly IUserAuditReportRepository _userAuditReportReposiotry;
 
         public ChangesReportService()
         {
             _userAuditReportReposiotry = new UserAuditReportRepository();
+            _userService = new UserService();
         }
         public void AddOrUpdateSavings(Item oldItem, Item newItem)
         {
@@ -70,7 +72,18 @@ namespace UserAuditReport.Services
 
         private void AddOrUpdate(Item item, OperationType operation, IEnumerable<ChangedFieldDto> changedFields)
         {
-            var user = _userAuditReportReposiotry.GetByUserName(item.Statistics.UpdatedBy);
+            var userName = item.Statistics.UpdatedBy;
+            if (string.IsNullOrEmpty(userName))
+            {
+                userName = item.Statistics.CreatedBy;
+            }
+            
+            if (!_userService.IsUserInRole(userName))
+            {
+                return;
+            }
+
+            var user = _userAuditReportReposiotry.GetByUserName(userName);
             if (user == null)
             {
                 var changes = new List<ChangeDto>
@@ -82,12 +95,6 @@ namespace UserAuditReport.Services
                 {
                     new ChangedItemDto(item.ID.ToString() , item.Paths.FullPath, item.Language.Name, changes)
                 };
-
-                var userName = item.Statistics.UpdatedBy;
-                if (string.IsNullOrEmpty(userName))
-                {
-                    userName = item.Statistics.CreatedBy;
-                }
 
                 var userRoles = RolesInRolesManager.GetRolesForUser(User.FromName(userName, false),
                     true).Select(r => r.Name);
