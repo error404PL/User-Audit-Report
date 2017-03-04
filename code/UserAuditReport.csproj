@@ -200,10 +200,12 @@
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\BaseItemDto.cs" />
     <Compile Include="DTO\ChangedFieldDto.cs" />
     <Compile Include="DTO\ChangedItemDto.cs" />
     <Compile Include="DTO\ChangeDto.cs" />
     <Compile Include="DTO\UserChangeDto.cs" />
+    <Compile Include="Enums\OperationType.cs" />
     <Compile Include="Repositories\IUserAuditReportReposiotry.cs" />
     <Compile Include="Repositories\UserAuditReportReposiotry.cs" />
     <Compile Include="Services\IChangesReportService.cs" />

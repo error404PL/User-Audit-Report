@@ -22,7 +22,7 @@ namespace UserAuditReport.Repositories
             var connectionString = ConfigurationManager.ConnectionStrings[_connectionStringName].ConnectionString;
             _userAuditCollection = GetCollection(connectionString, _collectionName);
         }
-        //https://laubplusco.net/working-custom-mongodb-collections-sitecore-8-using-webapi/
+
         public bool Add(UserChangeDto changesInfo)
         {
             return _userAuditCollection.Insert(changesInfo).Ok;

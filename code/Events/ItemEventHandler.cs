@@ -37,5 +37,31 @@ namespace UserAuditReport.Events
                    _changesReportService.AddOrUpdateChangesForUser(originalItem, item);
                 }           
         }
+
+        public void OnItemCreated(object sender, EventArgs args)
+        {
+            Item item = Event.ExtractParameter(args, 0) as Item;
+
+            if (item != null && item.Database.Name.ToLower().Equals("master")
+                && item.Paths.IsContentItem)
+            {
+              //  Item originalItem = item.Database.GetItem(item.ID, item.Language, item.Version);
+
+               // _changesReportService.AddOrUpdateChangesForUser(originalItem, item);
+            }
+        }
+
+        public void OnItemDeleted(object sender, EventArgs args)
+        {
+            Item item = Event.ExtractParameter(args, 0) as Item;
+
+            if (item != null && item.Database.Name.ToLower().Equals("master")
+                && item.Paths.IsContentItem)
+            {
+                //  Item originalItem = item.Database.GetItem(item.ID, item.Language, item.Version);
+
+                // _changesReportService.AddOrUpdateChangesForUser(originalItem, item);
+            }
+        }
     }
 }
