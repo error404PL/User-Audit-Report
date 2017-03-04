@@ -28,3 +28,4 @@ temp/
 .vscode
 nCrunchTemp*.*
 
+code/Properties/PublishProfiles/Error404.pubxml
