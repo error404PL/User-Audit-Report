@@ -46,7 +46,7 @@ namespace UserAuditReport.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetUsersOverview(string username)
+        public ActionResult GetUsersOverview()
         {
             var users = _userChangeService.GetUsersOverview();
             return Json(users, JsonRequestBehavior.AllowGet);
