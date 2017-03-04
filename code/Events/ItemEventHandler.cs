@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using MongoDB.Bson;
 using Sitecore.Data;
+using Sitecore.Data.Events;
 using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
 using Sitecore.Events;
@@ -34,33 +35,51 @@ namespace UserAuditReport.Events
                 {
                     Item originalItem = item.Database.GetItem(item.ID, item.Language, item.Version);
                     
-                   _changesReportService.AddOrUpdateChangesForUser(originalItem, item);
+                   _changesReportService.AddOrUpdateSavings(originalItem, item);
                 }           
         }
 
-        public void OnItemCreated(object sender, EventArgs args)
+        public void OnItemCopied(object sender, EventArgs args)
         {
             Item item = Event.ExtractParameter(args, 0) as Item;
 
             if (item != null && item.Database.Name.ToLower().Equals("master")
                 && item.Paths.IsContentItem)
             {
-              //  Item originalItem = item.Database.GetItem(item.ID, item.Language, item.Version);
-
-               // _changesReportService.AddOrUpdateChangesForUser(originalItem, item);
+                _changesReportService.AddOrUpdateCopies(item);
             }
         }
 
-        public void OnItemDeleted(object sender, EventArgs args)
+        public void OnItemDeleting(object sender, EventArgs args)
         {
             Item item = Event.ExtractParameter(args, 0) as Item;
 
             if (item != null && item.Database.Name.ToLower().Equals("master")
                 && item.Paths.IsContentItem)
             {
-                //  Item originalItem = item.Database.GetItem(item.ID, item.Language, item.Version);
+                _changesReportService.AddOrUpdateRemovals(item);
+            }
+        }
 
-                // _changesReportService.AddOrUpdateChangesForUser(originalItem, item);
+        public void OnItemMoved(object sender, EventArgs args)
+        {
+            Item item = Event.ExtractParameter(args, 0) as Item;
+
+            if (item != null && item.Database.Name.ToLower().Equals("master")
+                && item.Paths.IsContentItem)
+            {
+                _changesReportService.AddOrUpdateMoves(item);
+            }
+        }
+
+        public void OnItemCloned(object sender, EventArgs args)
+        {
+            Item item = Event.ExtractParameter(args, 0) as Item;
+
+            if (item != null && item.Database.Name.ToLower().Equals("master")
+                && item.Paths.IsContentItem)
+            {
+                _changesReportService.AddOrUpdateClones(item);
             }
         }
     }

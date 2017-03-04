@@ -14,6 +14,13 @@ namespace UserAuditReport.DTO
             OperationType = operationType;
             Date = DateTime.UtcNow;
         }
+
+        public ChangeDto(OperationType operationType)
+        {
+            ChangedFields = new List<ChangedFieldDto>();
+            OperationType = operationType;
+            Date = DateTime.UtcNow;
+        }
         public DateTime Date { get; set; }
         public OperationType OperationType { get; set; }
         public IEnumerable<ChangedFieldDto> ChangedFields { get; set; }

@@ -8,6 +8,12 @@ namespace UserAuditReport.Services
 {
     public interface IChangesReportService
     {
-        void AddOrUpdateChangesForUser(Item oldItem, Item newItem);
+        void AddOrUpdateSavings(Item oldItem, Item newItem);
+
+        void AddOrUpdateRemovals(Item item);
+
+        void AddOrUpdateCopies(Item item);
+        void AddOrUpdateMoves(Item item);
+        void AddOrUpdateClones(Item item);
     }
 }

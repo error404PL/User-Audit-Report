@@ -7,11 +7,10 @@ namespace UserAuditReport.Enums
 {
     public enum OperationType
     {
-        Saving,
-        Creating,
-        Deleting,
-        Cloning,
-        Renaming,
-        Moving
+        Saving = 0,
+        Deleting = 1,
+        Coping = 2,
+        Moving = 3,
+        Cloning = 4
     }
 }
