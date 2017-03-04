@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Sitecore.Data.Items;
 using UserAuditReport.DTO;
+using UserAuditReport.ViewModels;
 
 namespace UserAuditReport.Services
 {
@@ -20,5 +21,11 @@ namespace UserAuditReport.Services
         void AddOrUpdateClones(Item item);
 
         List<UserChangeDto> GetAll();
+
+        IEnumerable<UserViewModel> GetUsersOverview();
+
+        UserViewModel GetUserOverview(string username);
+
+        UserDetailsViewModel GetUserDetails(string username);
     }
 }

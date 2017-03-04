@@ -235,6 +235,10 @@
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\ReportSettingsService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="ViewModels\ItemChangesViewModel.cs" />
+    <Compile Include="ViewModels\ItemSavedViewModel.cs" />
+    <Compile Include="ViewModels\UserDetailsViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <None Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </None>

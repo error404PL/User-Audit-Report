@@ -31,6 +31,27 @@ namespace UserAuditReport.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public ActionResult GetUserOverview(string username)
+        {
+            var user = _userChangeService.GetUserOverview(username);
+            return Json(user, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetUserDetails(string username)
+        {
+            var user = _userChangeService.GetUserDetails(username);
+            return Json(user, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetUsersOverview(string username)
+        {
+            var users = _userChangeService.GetUsersOverview();
+            return Json(users, JsonRequestBehavior.AllowGet);
+        }
+
         //Robert: Change on post if it's needed.
         [HttpGet]
         public JsonResult GetReportSettings()
