@@ -199,6 +199,7 @@
     <None Include="Global.asax" />
     <Content Include="Views\UserAuditReportFeature\UserAuditReportView.cshtml" />
     <None Include="Properties\PublishProfiles\Error404.pubxml" />
+    <None Include="Properties\PublishProfiles\wwwroot.pubxml" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -222,8 +223,7 @@
     <None Include="Views\web.config" />
     <Content Include="packages.config" />
   </ItemGroup>
- <ItemGroup>
- <Folder Include="App_Config\Include\Feature\" />
+  <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>

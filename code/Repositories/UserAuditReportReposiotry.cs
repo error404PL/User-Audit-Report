@@ -15,13 +15,18 @@ namespace UserAuditReport.Repositories
     public class UserAuditReportReposiotry : IUserAuditReportReposiotry
     {
         private readonly string _collectionName = "useraudit";
-        private readonly string _connectionStringName = "tracking.reports";
+
+        private readonly string _connectionStringSetting = "UserAuditReport.ConnectionStringName";
+
         private readonly MongoCollection _userAuditCollection;
+
         public UserAuditReportReposiotry()
         {
-            var connectionString = ConfigurationManager.ConnectionStrings[_connectionStringName].ConnectionString;
+            var connectionStringName = Sitecore.Configuration.Settings.GetSetting(_connectionStringSetting);
+            var connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
             _userAuditCollection = GetCollection(connectionString, _collectionName);
         }
+
         //https://laubplusco.net/working-custom-mongodb-collections-sitecore-8-using-webapi/
         public bool Add(UserChangeDto changesInfo)
         {
@@ -59,6 +64,7 @@ namespace UserAuditReport.Repositories
         //{
         //    return Query<Comment>.EQ(c => c.Id, id);
         //}
+
         private static MongoCollection GetCollection(string connectionString, string collectionName)
         {
             var url = new MongoUrl(connectionString);
