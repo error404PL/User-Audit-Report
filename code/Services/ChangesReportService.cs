@@ -59,13 +59,13 @@ namespace UserAuditReport.Services
             return _userAuditReportReposiotry.GetAll();
         }
 
-        public IEnumerable<UserViewModel> GetUsersOverview()
+        public IEnumerable<UserViewModel> GetUsersOverview(string userFilter)
         {
             DateTime from = DateTime.MinValue;
             DateTime to = DateTime.MaxValue;
             var usersViewModel = new List<UserViewModel>();
 
-            foreach (var user in _userAuditReportReposiotry.GetAll())
+            foreach (var user in _userAuditReportReposiotry.GetAll().Where(u => u.UserName.Contains(userFilter)))
             {
                 var allChanges = new List<Change>();
                 foreach (var changes in user.ChangedItems.Select(x => x.Changes))

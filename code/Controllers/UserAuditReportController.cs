@@ -25,13 +25,6 @@ namespace UserAuditReport.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetUsers()
-        {
-            var list = _userChangeService.GetAll();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
         public ActionResult GetUserOverview(string username)
         {
             var user = _userChangeService.GetUserOverview(username);
@@ -46,9 +39,9 @@ namespace UserAuditReport.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetUsersOverview()
+        public ActionResult GetUsersOverview(string username)
         {
-            var users = _userChangeService.GetUsersOverview();
+            var users = _userChangeService.GetUsersOverview(username);
             return Json(users, JsonRequestBehavior.AllowGet);
         }
 

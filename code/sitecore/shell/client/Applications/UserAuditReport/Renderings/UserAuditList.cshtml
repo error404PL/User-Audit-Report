@@ -14,6 +14,10 @@
 }
 <div @htmlAttributes>
 
+    <div style='margin-bottom: 10px;' class='pull-right'>
+        Username filter: <input type="text" id="user-filter" />
+    </div>
+
     <!-- data binding with knockout js https://cmsview.wordpress.com/2015/11/05/sitecore-speak-for-beginners-part-9-getting-data-for-custom-component/-->
     <div>
         <table class="sc-table sc-table-header table">
@@ -32,9 +36,9 @@
         <div class="sc-listcontrol-body">
             <table class="sc-table table">
                 <tbody data-bind="foreach: userlist">
-                    <tr>
+                    <tr class="audit-user-row">
                         <td class="ventilate">
-                            <span data-bind="text:UserName"></span>
+                            <span class="audit-user-name" data-bind="text:UserName"></span>
                         </td>
                         <td class="ventilate">
                             <span data-bind="text:AllChanges"></span>
@@ -54,36 +58,37 @@
                         <td class="ventilate">
                             <span data-bind="text:ItemsDeleted"></span>
                         </td>
-                    </tr>
-                    <tr>
-                        <td colspan=2>
-                            <ul data-bind="foreach: ChangedItems" style="list-style-type: none;">
+
+                        @*
+     <tr class="audit-details-row" style="display:none">
+        <td colspan=2>
+            <ul data-bind="foreach: ChangedItems" style="list-style-type: none;">
+                <li>
+                    Item: <span data-bind="text:ItemPath"></span>
+
+                    <ul data-bind="foreach: Changes" style="list-style-type: none;">
+                        <li>
+                            Date: <span data-bind="text:Date"></span>
+
+                            <ul data-bind="foreach: ChangedFields" style="list-style-type: none;">
                                 <li>
-                                    Item: <span data-bind="text:ItemPath"></span>
-
-                                    <ul data-bind="foreach: Changes" style="list-style-type: none;">
-                                        <li>
-                                            Date: <span data-bind="text:Date"></span>
-
-                                            <ul data-bind="foreach: ChangedFields" style="list-style-type: none;">
-                                                <li>
-                                                    <div>Field: <span data-bind="text:FieldName"></span></div>
-                                                    <div>Old value: <span data-bind="text:OldValue"></span></div>
-                                                    <div>New value: <span data-bind="text:NewValue"></span></div>
-                                                </li>
-                                            </ul>
-
-                                        </li>
-                                    </ul>
-
+                                    <div>Field: <span data-bind="text:FieldName"></span></div>
+                                    <div>Old value: <span data-bind="text:OldValue"></span></div>
+                                    <div>New value: <span data-bind="text:NewValue"></span></div>
                                 </li>
                             </ul>
-                        </td>
+
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>
+        </td>
+    </tr>
+                        *@
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-
-
 </div>

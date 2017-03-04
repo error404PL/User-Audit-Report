@@ -15,4 +15,4 @@ Languages:
     - ID: "3b0942ea-261b-4ccf-8758-66960a0ab310"
       Hint: Tracked Roles
       Value: |
-        modules\Feature Identity Admin|modules\Feature Demo Admin
+        modules\Feature Identity Admin|modules\Feature Demo Admin|sitecore\Author|sitecore\Developer|sitecore\Sitecore Local Administrators
