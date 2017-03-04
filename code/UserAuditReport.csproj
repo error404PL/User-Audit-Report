@@ -91,6 +91,7 @@
   <ItemGroup>
     <None Include="Global.asax" />
     <Content Include="Views\UserAuditReportFeature\UserAuditReportView.cshtml" />
+    <None Include="Properties\PublishProfiles\Error404.pubxml" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
