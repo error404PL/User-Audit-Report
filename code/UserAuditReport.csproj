@@ -196,7 +196,7 @@
     <Content Include="App_Config\Include\Feature\Feature.UserAuditReport.config" />
     <None Include="Global.asax" />
     <Content Include="Views\UserAuditReportFeature\UserAuditReportView.cshtml" />
-    <None Include="Properties\PublishProfiles\publish local.pubxml" />
+    <None Include="Properties\PublishProfiles\Error404.pubxml" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
