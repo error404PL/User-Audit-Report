@@ -20,7 +20,12 @@
             <thead>
                 <tr>
                     <th class="sc-table-head">User</th>
-                    <th class="sc-table-head">Ite</th>
+                    <th class="sc-table-head">All Items Changed</th>
+                    <th class="sc-table-head">Items Saved</th>
+                    <th class="sc-table-head">Items Copied</th>
+                    <th class="sc-table-head">Items Moved</th>
+                    <th class="sc-table-head">Items Cloned</th>
+                    <th class="sc-table-head">Items Deleted</th>
                 </tr>
             </thead>
         </table>
@@ -32,7 +37,22 @@
                             <span data-bind="text:UserName"></span>
                         </td>
                         <td class="ventilate">
-                            <span>TODO total number of changes?</span>
+                            <span data-bind="text:AllChanges"></span>
+                        </td>
+                        <td class="ventilate">
+                            <span data-bind="text:ItemsSaved"></span>
+                        </td>
+                        <td class="ventilate">
+                            <span data-bind="text:ItemsCopied"></span>
+                        </td>
+                        <td class="ventilate">
+                            <span data-bind="text:ItemsMoved"></span>
+                        </td>
+                        <td class="ventilate">
+                            <span data-bind="text:ItemsCloned"></span>
+                        </td>
+                        <td class="ventilate">
+                            <span data-bind="text:ItemsDeleted"></span>
                         </td>
                     </tr>
                     <tr>

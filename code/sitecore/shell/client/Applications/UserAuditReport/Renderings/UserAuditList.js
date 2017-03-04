@@ -11,7 +11,22 @@
         jQuery.ajax({
             type: "GET",
             dataType: "json",
-            url: "/api/sitecore/UserAuditReport/GetUsers",
+            url: "/api/sitecore/UserAuditReport/GetUsersOverview",
+            cache: false,
+            success: function (data) {
+                app.set("userlist", data);
+            },
+            error: function () {
+                console.log("Error in GetUsers() function");
+            }
+        });
+    },
+
+    GetUserDetails: function (app) {
+        jQuery.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/api/sitecore/UserAuditReport/GetUserDetails?username=sitecore\Admin",
             cache: false,
             success: function (data) {
                 app.set("userlist", data);
