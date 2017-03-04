@@ -136,6 +136,9 @@
       <HintPath>..\packages\Sitecore.Marketing.Taxonomy.8.2.161115\lib\NET452\Sitecore.Marketing.Taxonomy.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Sitecore.Mvc">
+      <HintPath>..\..\Habitat\packages\Sitecore.Mvc.NoReferences.8.2.161115\lib\NET452\Sitecore.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.NVelocity, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sitecore.NVelocity.8.2.161115\lib\NET452\Sitecore.NVelocity.dll</HintPath>
       <Private>True</Private>
@@ -195,11 +198,16 @@
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\Feature.UserAuditReport.config" />
     <Content Include="App_Config\Include\Feature\Sitecore.UserAuditReport.Serialization.config" />
-    <Content Include="App_Config\Include\Feature\z.Sitecore.UserAuditReport.DevSettings.config.example" />
+    <Content Include="App_Config\Include\Feature\z.Sitecore.UserAuditReport.DevSettings.config.example">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Global.asax" />
+    <Content Include="sitecore\shell\client\Applications\UserAuditReport\Renderings\UserAuditList.js" />
+    <Content Include="sitecore\shell\client\Applications\UserAuditReport\Renderings\UserAuditList.test.js" />
     <Content Include="Views\UserAuditReportFeature\UserAuditReportView.cshtml" />
     <None Include="Properties\PublishProfiles\Error404.pubxml" />
     <None Include="Properties\PublishProfiles\wwwroot.pubxml" />
+    <Content Include="sitecore\shell\client\Applications\UserAuditReport\Renderings\UserAuditList.cshtml" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
