@@ -194,6 +194,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\Feature.UserAuditReport.config" />
+    <Content Include="App_Config\Include\Feature\Sitecore.UserAuditReport.Serialization.config" />
+    <Content Include="App_Config\Include\Feature\z.Sitecore.UserAuditReport.DevSettings.config.example" />
     <None Include="Global.asax" />
     <Content Include="Views\UserAuditReportFeature\UserAuditReportView.cshtml" />
     <None Include="Properties\PublishProfiles\Error404.pubxml" />
@@ -219,7 +221,8 @@
     <None Include="Views\web.config" />
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
+ <ItemGroup>
+ <Folder Include="App_Config\Include\Feature\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
