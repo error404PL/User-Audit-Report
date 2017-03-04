@@ -12,14 +12,19 @@ using UserAuditReport.DTO;
 
 namespace UserAuditReport.Repositories
 {
-    public class UserAuditReportReposiotry : IUserAuditReportReposiotry
+    public class UserAuditReportRepository : IUserAuditReportRepository
     {
         private readonly string _collectionName = "useraudit";
-        private readonly string _connectionStringName = "tracking.reports";
+
+        private readonly string _connectionStringSetting = "UserAuditReport.ConnectionStringName";
+
         private readonly MongoCollection _userAuditCollection;
-        public UserAuditReportReposiotry()
+
+        public UserAuditReportRepository()
         {
-            var connectionString = ConfigurationManager.ConnectionStrings[_connectionStringName].ConnectionString;
+            var connectionStringName = Sitecore.Configuration.Settings.GetSetting(_connectionStringSetting);
+            Assert.IsNotNullOrEmpty(connectionStringName, "UserAuditReport.ConnectionStringName setting required");
+            var connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
             _userAuditCollection = GetCollection(connectionString, _collectionName);
         }
 
@@ -59,6 +64,7 @@ namespace UserAuditReport.Repositories
         //{
         //    return Query<Comment>.EQ(c => c.Id, id);
         //}
+
         private static MongoCollection GetCollection(string connectionString, string collectionName)
         {
             var url = new MongoUrl(connectionString);

@@ -6,7 +6,7 @@ using UserAuditReport.DTO;
 
 namespace UserAuditReport.Repositories
 {
-    public interface IUserAuditReportReposiotry
+    public interface IUserAuditReportRepository
     {
         bool Add(UserChangeDto changesInfo);
         UserChangeDto GetByUserName(string userName);

@@ -194,9 +194,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Feature\Feature.UserAuditReport.config" />
+    <Content Include="App_Config\Include\Feature\Sitecore.UserAuditReport.Serialization.config" />
+    <Content Include="App_Config\Include\Feature\z.Sitecore.UserAuditReport.DevSettings.config.example" />
     <None Include="Global.asax" />
     <Content Include="Views\UserAuditReportFeature\UserAuditReportView.cshtml" />
     <None Include="Properties\PublishProfiles\Error404.pubxml" />
+    <None Include="Properties\PublishProfiles\wwwroot.pubxml" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -206,14 +209,15 @@
     <Compile Include="DTO\ChangeDto.cs" />
     <Compile Include="DTO\UserChangeDto.cs" />
     <Compile Include="Enums\OperationType.cs" />
-    <Compile Include="Repositories\IUserAuditReportReposiotry.cs" />
-    <Compile Include="Repositories\UserAuditReportReposiotry.cs" />
+    <Compile Include="Repositories\IUserAuditReportRepository.cs" />
+    <Compile Include="Repositories\UserAuditReportRepository.cs" />
     <Compile Include="Services\IChangesReportService.cs" />
     <Compile Include="Services\ChangesReportService.cs" />
     <None Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </None>
     <Compile Include="Controllers\UserAuditReportController.cs" />
+    <Compile Include="CustomFields\RolesMultilist.cs" />
     <Compile Include="Events\ItemEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,0 +1,14 @@
+﻿---
+ID: "ac18dcad-1abe-4e98-9046-590fcde9dd63"
+Parent: "731efc50-a9cd-4ffe-bd8d-f5ebcd83f9dc"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/Feature/User Audit Reports/_User Audit Reports/Roles Management
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170304T095137Z

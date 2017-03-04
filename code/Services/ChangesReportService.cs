@@ -12,7 +12,7 @@ namespace UserAuditReport.Services
 {
     public class ChangesReportService : IChangesReportService
     {
-        private readonly IUserAuditReportReposiotry _userAuditReportReposiotry;
+        private readonly IUserAuditReportRepository _userAuditReportReposiotry;
 
         private readonly string[] _skippedFields =
         {
@@ -25,7 +25,7 @@ namespace UserAuditReport.Services
 
         public ChangesReportService()
         {
-            _userAuditReportReposiotry = new UserAuditReportReposiotry();
+            _userAuditReportReposiotry = new UserAuditReportRepository();
         }
         public void AddOrUpdateChangesForUser(Item oldItem, Item newItem)
         {
