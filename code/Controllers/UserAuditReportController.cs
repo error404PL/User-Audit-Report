@@ -20,5 +20,14 @@ namespace UserAuditReport.Controllers
 
             return Json(reportSettingsDTOResult, JsonRequestBehavior.AllowGet);
         }
+        
+        [HttpGet]
+        public JsonResult IsUserInRole(string username)
+        {
+            var userService = new UserService();
+            var isUserTracked = userService.IsUserInRole(username);
+
+            return Json(isUserTracked, JsonRequestBehavior.AllowGet);
+        }
     }
 }
