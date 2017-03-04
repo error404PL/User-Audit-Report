@@ -80,6 +80,10 @@
       <HintPath>..\packages\MongoDB.Driver.Core.2.4.2\lib\net45\MongoDB.Driver.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RazorGenerator.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorGenerator.Mvc.2.4.2\lib\net40\RazorGenerator.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Sitecore.Abstractions, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sitecore.Abstractions.8.2.161115\lib\NET452\Sitecore.Abstractions.dll</HintPath>
       <Private>True</Private>
@@ -136,6 +140,10 @@
       <HintPath>..\packages\Sitecore.Marketing.Taxonomy.8.2.161115\lib\NET452\Sitecore.Marketing.Taxonomy.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Sitecore.Mvc, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.Mvc.8.2.161115\lib\NET452\Sitecore.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Sitecore.NVelocity, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sitecore.NVelocity.8.2.161115\lib\NET452\Sitecore.NVelocity.dll</HintPath>
       <Private>True</Private>
@@ -168,6 +176,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0.3\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -200,15 +212,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\BaseItemDto.cs" />
+    <Compile Include="App_Start\RazorGeneratorMvcStart.cs" />
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="DTO\ChangedFieldDto.cs" />
     <Compile Include="DTO\ChangedItemDto.cs" />
     <Compile Include="DTO\ChangeDto.cs" />
+    <Compile Include="DTO\ReportSettingsDTO.cs" />
     <Compile Include="DTO\UserChangeDto.cs" />
     <Compile Include="Enums\OperationType.cs" />
     <Compile Include="Repositories\IUserAuditReportRepository.cs" />
     <Compile Include="Repositories\UserAuditReportRepository.cs" />
     <Compile Include="Services\IChangesReportService.cs" />
     <Compile Include="Services\ChangesReportService.cs" />
+    <Compile Include="Services\IReportSettingsService.cs" />
+    <Compile Include="Services\ReportSettingsService.cs" />
     <None Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </None>
