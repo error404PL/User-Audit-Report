@@ -75,7 +75,14 @@
 
             jQuery(document).on("change", '#user-audit-filter', function (event) {
                 var userName = jQuery(this).val();
-                app.GetUsers(app, userName, -1);
+                var period = jQuery('#user-audit-datepicker').val();
+                app.GetUsers(app, userName, period);
+            });
+
+            jQuery(document).on("change", '#user-audit-datepicker', function (event) {
+                var userName = jQuery('#user-audit-filter').val();
+                var period = jQuery(this).val();
+                app.GetUsers(app, userName, period);
             });
         }
     });

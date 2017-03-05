@@ -15,10 +15,19 @@
 <div @htmlAttributes>
 
     <div style='margin-bottom: 10px;' class='pull-right'>
-        Username filter: <input type="text" id="user-audit-filter" />
-    </div>
+        <input class='form-control data-sc-registered' style='display:inline; width:auto;' type="text" placeholder='User Filter' id="user-audit-filter" />
 
-    <!-- data binding with knockout js https://cmsview.wordpress.com/2015/11/05/sitecore-speak-for-beginners-part-9-getting-data-for-custom-component/-->
+        <span style='margin-left: 10px;'></span>
+        <select id="user-audit-datepicker" class="btn sc-togglebutton btn-default">
+            <option value="-1">All Time</option>
+            <option value="1">Today</option>
+            <option value="3">Last 3 days</option>
+            <option value="7">Last 7 day</option>
+            <option value="30">Last 1 month</option>
+            <option value="90">Last 3 months</option>
+            <option value="180">Last 6 months</option>
+        </select>
+    </div>
     <div>
         <table class="sc-table sc-table-header table">
             <thead>
