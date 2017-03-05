@@ -31,30 +31,36 @@
                 cache: false,
                 success: function (data) {
                     content = '<ul style="list-style-type: none;">';
+                    content += "<h3>Modified:</h3>";
                     for (var i = 0; i < data.ItemsSaved.length; i++) {
                         var item = data.ItemsSaved[i];
                         var inner = '';
+                        inner += "<div><strong>Changed fields:</strong></div>";
                         for (var j = 0; j < item.FieldsChanged.length; j++) {
                             var field = item.FieldsChanged[j];
-                            inner += '<div style="margin-left:10px;">Changed field:' + field.FieldName + '</div>';
+                            inner += '<div style="margin-left:10px;">- ' + field.FieldName + '</div>';
                         }
-                        content += '<li>Modified: ' + item.Path + '<span style="margin-left:15px">&#64;' + item.Date + '</span>' + inner + '</li>';
+                        content += '<li><strong>item: </strong>' + item.Path + '<span style="margin-left:15px"><strong>date: </strong>' + item.Date + '</span>' + inner + '</li>';
                     }
+                    content += "<h3>Deleted:</h3>";
                     for (var i = 0; i < data.ItemsDeleted.length; i++) {
                         var item = data.ItemsDeleted[i];
-                        content += '<li>Deleted: ' + item.Path + '<span style="margin-left:15px">&#64;' + item.Date + '</span></li>';
+                        content += '<li><strong>item: </strong>' + item.Path + '<span style="margin-left:15px"><strong>date: </strong>' + item.Date + '</span></li>';
                     }
+                    content += "<h3>Copied:</h3>";
                     for (var i = 0; i < data.ItemsCopied.length; i++) {
                         var item = data.ItemsCopied[i];
-                        content += '<li>Copied: ' + item.Path + '<span style="margin-left:15px">&#64;' + item.Date + '</span></li>';
+                        content += '<li><strong>item: </strong>' + item.Path + '<span style="margin-left:15px"><strong>date: </strong>' + item.Date + '</span></li>';
                     }
+                    content += "<h3>Moved:</h3>";
                     for (var i = 0; i < data.ItemsMoved.length; i++) {
                         var item = data.ItemsMoved[i];
-                        content += '<li>Moved: ' + item.Path + '<span style="margin-left:15px">&#64;' + item.Date + '</span></li>';
+                        content += '<li><strong>item: </strong>' + item.Path + '<span style="margin-left:15px"><strong>date: </strong>' + item.Date + '</span></li>';
                     }
+                    content += "<h3>Cloned:</h3>";
                     for (var i = 0; i < data.ItemsCloned.length; i++) {
                         var item = data.ItemsCloned[i];
-                        content += '<li>Cloned: ' + item.Path + '<span style="margin-left:15px">&#64;' + item.Date + '</span></li>';
+                        content += '<li><strong>item: </strong>' + item.Path + '<span style="margin-left:15px"><strong>date: </strong>' + item.Date + '</span></li>';
                     }
                     content += '</ul>'
 
