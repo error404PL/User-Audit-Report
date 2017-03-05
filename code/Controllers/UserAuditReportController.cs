@@ -13,7 +13,6 @@ namespace UserAuditReport.Controllers
             _userChangesReportService = new ChangesReportService();
         }
 
-        [HttpGet]
         public ActionResult GetUserOverview(string username, int dateRange)
         {
             var user = _userChangesReportService.GetUserOverview(username, dateRange);
@@ -28,9 +27,9 @@ namespace UserAuditReport.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetUsersOverview(int dateRange)
+        public ActionResult GetUsersOverview(string username, int dateRange)
         {
-            var users = _userChangesReportService.GetUsersOverview(dateRange);
+            var users = _userChangesReportService.GetUsersOverview(dateRange, username);
             return Json(users, JsonRequestBehavior.AllowGet);
         }
     }

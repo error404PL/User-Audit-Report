@@ -59,12 +59,12 @@ namespace UserAuditReport.Services
             return _userAuditReportReposiotry.GetAll();
         }
 
-        public IEnumerable<UserViewModel> GetUsersOverview(int dateRange)
+        public IEnumerable<UserViewModel> GetUsersOverview(int dateRange, string userFilter)
         {
             DateTime from = dateRange > 0
                 ? DateTime.UtcNow.AddDays(-dateRange) : DateTime.MinValue;
 
-            return _userAuditReportReposiotry.GetAll().Select(x => PrepareUserViewModel(x, from));
+            return _userAuditReportReposiotry.GetAll().Where(u => u.UserName.Contains(userFilter)).Select(x => PrepareUserViewModel(x, from));
         }
 
         public UserViewModel GetUserOverview(string username, int dateRange)

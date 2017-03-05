@@ -19,7 +19,7 @@ namespace UserAuditReport.Services
 
         List<UserChange> GetAll();
 
-        IEnumerable<UserViewModel> GetUsersOverview(int dateRange);
+        IEnumerable<UserViewModel> GetUsersOverview(int dateRange, string userFilter);
 
         UserViewModel GetUserOverview(string username, int dateRange);
 
