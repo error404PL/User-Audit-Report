@@ -1,0 +1,14 @@
+﻿---
+ID: "552d5ac6-ee88-4776-a008-7a04030faa27"
+Parent: "08477468-d438-43d4-9d6a-6d84a611971c"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: /sitecore/system/Modules/User Audit Reports
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170304T072733Z

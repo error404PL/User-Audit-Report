@@ -1,0 +1,21 @@
+﻿---
+ID: "845e5032-a426-4dda-a2f7-13c3bca0b1a0"
+Parent: "71d49c21-a5d5-4fc4-8bb4-dfc0feb469b6"
+Template: "6437cfd5-76ca-48aa-bfbd-8b8d73eb5581"
+Path: /sitecore/client/Your Apps/UserAuditReport/UsersListing/PageSettings/HeaderTitle Parameters
+DB: core
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20170304T122001Z
+    - ID: "3564b3d0-3804-4d86-9880-b5e7473ef56c"
+      Hint: Text
+      Value: User Audit Report
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
